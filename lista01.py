@@ -58,3 +58,125 @@ def exe05():
     print(biggest_sum)
     print(smallest_sum)
     print(f"{biggest_sum*0.5+smallest_sum*0.5:.2f}")
+
+
+def exe06():
+    n = int(input())
+    div = 1
+    while div <= n:
+        if n % div == 0:
+            print(div)
+        div += 1
+
+
+def exe07():
+    x = int(input())
+    y = int(input())
+    if x == y:
+        print("x e igual a y")
+    elif x < y:
+        print("x e menor que y")
+    else:
+        print("x e maior que y")
+
+
+def exe08():
+    maior = 0
+    n = 0
+    for i in range(10):
+        x = int(input())
+        if i == 0:
+            n = x
+            maior = x
+        else:
+            if x > maior:
+                maior = x
+    print(maior)
+    if maior % n == 0:
+        print(n)
+
+
+def exe09():
+    s1 = input()
+    s2 = input()
+
+    def concat(s1, s2):
+        if not s1:
+            return s2
+        else:
+            return s1[0:1] + concat(s1[1:], s2)
+
+    def rev(s1):
+        if not s1:
+            return ""
+        else:
+            return concat(rev(s1[1:]), s1[0:1])
+
+    def prefix(s1, s2):
+        if s1 == "" and s2 != "":
+            return True
+        else:
+            if s1[0:1] == s2[0:1]:
+                return prefix(s1[1:], s2[1:])
+            else:
+                return False
+
+    print(concat(s1, s2))
+    if s1:
+        print(rev(s1))
+    else:
+        print()
+    if s1 or s2:
+        print(prefix(s1, s2))
+
+
+def exe10():
+    n = int(input())
+
+    def fib(n):
+        if n == 1 or n == 2:
+            return 1
+        else:
+            return fib(n - 1) + fib(n - 2)
+
+    def fat(n):
+        if n == 1:
+            return 1
+        else:
+            return n * fat(n - 1)
+
+    fibN = fib(n)
+    print(f"{fibN} {fat(n)}" if fibN % 2 == 1 else f"{fibN} {fat(n)} {fib(n+1)-fibN}")
+
+
+def exe11():
+    ra, lu = input().split()
+    ra, lu = [int(ra), int(lu)]
+
+    def mdc_euclides(a, b):
+        while b != 0:
+            a, b = b, a % b
+        return a
+
+    print(mdc_euclides(ra, lu))
+
+
+def exe12():
+    pa, pi = input().split()
+    pa, pi = [int(pa), int(pi)]
+    analise = "ok" if pi > 0 and pi - pa <= 1 and pi - pa >= 0 else "errados"
+    print(f"{pa} {pi} {analise}")
+
+
+def exe13():
+    acertou = False
+    n = float(input())
+    while acertou is not True:
+        guess = float(input())
+        if n > guess:
+            print("O número correto é maior.")
+        elif n < guess:
+            print("O número correto é menor.")
+        else:
+            print("Parabéns! Você acertou.")
+            acertou = True
