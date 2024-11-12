@@ -1,4 +1,4 @@
-from lista02 import exe03
+from lista02 import exe05
 
 
-exe03()
+exe05()

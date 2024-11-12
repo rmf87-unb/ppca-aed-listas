@@ -1,7 +1,7 @@
 from io import StringIO
 import sys
 
-from lista02 import decimal2binario, exe02, exe03
+from lista02 import decimal2binario, exe02, exe03, exe04, exe05
 
 
 def test_exe01():
@@ -119,4 +119,49 @@ def test_exe03d(monkeypatch):
     monkeypatch.setattr(sys, "stdin", inputs)
     monkeypatch.setattr(sys, "stdout", result)
     exe03()
+    assert result.getvalue().strip() == "False"
+
+
+def test_exe04(monkeypatch):
+    inputs = StringIO("10")
+    result = StringIO()
+    monkeypatch.setattr(sys, "stdin", inputs)
+    monkeypatch.setattr(sys, "stdout", result)
+    exe04()
+    assert result.getvalue().strip() == "55"
+
+
+def test_exe05(monkeypatch):
+    inputs = StringIO("([{}])")
+    result = StringIO()
+    monkeypatch.setattr(sys, "stdin", inputs)
+    monkeypatch.setattr(sys, "stdout", result)
+    exe05()
+    assert result.getvalue().strip() == "True"
+
+
+def test_exe05b(monkeypatch):
+    inputs = StringIO("(]")
+    result = StringIO()
+    monkeypatch.setattr(sys, "stdin", inputs)
+    monkeypatch.setattr(sys, "stdout", result)
+    exe05()
+    assert result.getvalue().strip() == "False"
+
+
+def test_exe05c(monkeypatch):
+    inputs = StringIO("]")
+    result = StringIO()
+    monkeypatch.setattr(sys, "stdin", inputs)
+    monkeypatch.setattr(sys, "stdout", result)
+    exe05()
+    assert result.getvalue().strip() == "False"
+
+
+def test_exe05c(monkeypatch):
+    inputs = StringIO("]]")
+    result = StringIO()
+    monkeypatch.setattr(sys, "stdin", inputs)
+    monkeypatch.setattr(sys, "stdout", result)
+    exe05()
     assert result.getvalue().strip() == "False"
